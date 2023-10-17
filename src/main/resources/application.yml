@@ -1,0 +1,4 @@
+spring:
+  data:
+    mongodb:
+      uri: mongodb://test2:12345@localhost:20000/test?authMechanism=SCRAM-SHA-256
