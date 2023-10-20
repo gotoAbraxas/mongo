@@ -11,11 +11,14 @@ import lombok.RequiredArgsConstructor;
 import org.bson.Document;
 import org.bson.types.ObjectId;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.Optional;
+import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
@@ -36,6 +39,22 @@ public class TestService {
 
     }
 
+    @Transactional
+    public Set<String> test(){
+        Optional<Customer> data = testRepository.findById("의사");
+
+
+
+        Customer customer = data.orElseThrow(() -> new RuntimeException());
+
+        customer.getData().add("6");
+
+        testRepository.save(customer);
+
+
+        return customer.getData();
+    }
+
     public void insert2(){
 
         Test tst = new Test();
@@ -47,11 +66,14 @@ public class TestService {
                         new Document("title", "One Hundred Years of Solitude").append("yearPublished", 1967),
                         new Document("title", "Chronicle of a Death Foretold").append("yearPublished", 1981),
                         new Document("title", "Love in the Time of Cholera").append("yearPublished", 1985)));
+
+
         MongoDatabase test = mongoClient.getDatabase("test");
 
         MongoCollection<Document> test1 = test.getCollection("test");
 
         test1.insertOne(author);
+        // 고도화가 안되어있는 부분
 
 
     }
