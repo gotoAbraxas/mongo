@@ -4,6 +4,9 @@ import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.Set;
+import java.util.UUID;
+
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -17,6 +20,9 @@ public class Customer {
 
     public String firstName;
     public String lastName;
+    public Set<String> data;
+
+
 
 
     @Override
