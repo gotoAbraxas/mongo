@@ -5,6 +5,9 @@ import com.example.testmongo.domain.document.Customer;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.bson.Document;
+
+import java.util.Set;
 
 @Getter
 @NoArgsConstructor
@@ -15,6 +18,8 @@ public class CustomerRequest {
 
     private String firstName;
     private String lastName;
+    private Set<String> data;
+
 
 
     public Customer toDocument(){
@@ -22,6 +27,7 @@ public class CustomerRequest {
                 .firstName(firstName)
                 .id(id)
                 .lastName(lastName)
+                .data(data)
                 .build();
 
     }
